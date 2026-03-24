@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maliq Holding | شركة مالق القابضة</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --color-bg: #0A0A0A;
+            --color-text-main: #F5F5F5;
+            --color-text-muted: #CCCCCC;
+            --color-text-dark: #888888;
+            --color-accent-green: #0A150F; /* Barely visible dark green */
+            
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            
+            --transition-slow: 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background-color: var(--color-accent-green);
+            color: var(--color-text-main);
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            font-family: var(--font-sans);
+            font-weight: 300;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--color-text-main);
+        }
+
+        p {
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        a {
+            color: var(--color-text-main);
+            text-decoration: none;
+            transition: color var(--transition-fast), opacity var(--transition-fast);
+        }
+
+        /* --- LAYOUT & SECTIONS --- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section {
+            padding: 15vh 0;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .hero-subtext {
+            font-family: var(--font-sans);
+            color: var(--color-text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .arabic-text {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-muted);
+        }
+
+        .cta-enter {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            width: fit-content;
+        }
+
+        .cta-enter::after {
+            content: '↓';
+            font-size: 1.2rem;
+            transition: transform var(--transition-fast);
+        }
+
+        .cta-enter:hover {
+            color: var(--color-text-main);
+        }
+
+        .cta-enter:hover::after {
+            transform: translateY(5px);
+        }
+
+        /* --- EDITORIAL SPLIT LAYOUT --- */
+        .editorial-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 4rem;
+            margin-bottom: 8rem;
+        }
+
+        @media (min-width: 768px) {
+            .editorial-row {
+                grid-template-columns: 1fr 2fr;
+                gap: 5rem;
+            }
+        }
+
+        .section-label {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-dark);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        .contact-info a {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--color-text-dark);
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: var(--color-text-dark);
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 4rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--color-text-dark);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .partner-link {
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        /* --- ANIMATIONS (Micro-interactions) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- PARTNER PORTAL MODAL (Optional) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-fast);
+            z-index: 100;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform var(--transition-fast);
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--color-text-dark);
+            color: var(--color-text-main);
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            text-align: center;
+            outline: none;
+            margin-bottom: 2rem;
+            width: 250px;
+            transition: border-color var(--transition-fast);
+        }
+
+        .modal-content input:focus {
+            border-bottom-color: var(--color-text-main);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            background: none;
+            border: none;
+            color: var(--color-text-dark);
+            font-size: 2rem;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+        .close-modal:hover { color: var(--color-text-main); }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="reveal">
+            <h1>A New Standard of Luxury is Arriving in Riyadh</h1>
+            <div class="hero-subtext">
+                <span class="arabic-text">شركة مالق القابضة</span>
+                Crafting the future of luxury pastry & hospitality in Saudi Arabia
+            </div>
+            <a href="#about" class="cta-enter" id="enter-btn">Enter</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section id="about" class="editorial-row reveal">
+            <div class="section-label">About</div>
+            <div class="section-content">
+                <p>Maliq Holding is a Riyadh-based luxury holding company focused on introducing world-class culinary and hospitality concepts to the Kingdom.<br><br>Built on discretion, precision, and long-term vision, we aim to redefine premium experiences in Saudi Arabia.</p>
+            </div>
+        </section>
+
+        <section id="vision" class="editorial-row reveal">
+            <div class="section-label">Vision</div>
+            <div class="section-content">
+                <p>We collaborate with globally recognized brands and visionary creators to bring timeless concepts into one of the world’s most dynamic markets.<br><br>Our approach is defined by excellence, restraint, and enduring value.</p>
+            </div>
+        </section>
+
+        <section id="riyadh" class="editorial-row reveal">
+            <div class="section-label">Riyadh</div>
+            <div class="section-content">
+                <p>Riyadh is rapidly emerging as a global destination for culture, luxury, and gastronomy.<br><br>Maliq Holding is proud to contribute to this transformation, aligned with the ambitions of Vision 2030.</p>
+            </div>
+        </section>
+
+        <section id="coming-soon" class="editorial-row reveal">
+            <div class="section-label">Status</div>
+            <div class="section-content">
+                <h2>First concepts launching soon in Riyadh.</h2>
+                <br>
+                <p>Details will be revealed shortly.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="editorial-row reveal">
+            <div class="section-label">Contact</div>
+            <div class="section-content">
+                <p>For partnerships and inquiries:</p>
+                <div class="contact-info">
+                    <a href="mailto:anin.thibaut@outlook.fr">anin.thibaut@outlook.fr</a>
+                    <a href="tel:+966537015180">+966 53 701 5180</a>
+                </div>
+                <div class="note">Private and professional inquiries only.</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div>
+            <span>شركة مالق القابضة</span><br>
+            <span>Riyadh, Saudi Arabia</span>
+        </div>
+        <div>
+            &copy; 2026 Maliq Holding. All rights reserved.
+        </div>
+        <div>
+            <span class="partner-link" id="partner-trigger">Partners Access</span>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="partner-modal">
+        <button class="close-modal" id="close-modal">&times;</button>
+        <div class="modal-content">
+            <div class="section-label" style="margin-bottom: 1rem;">Authorized Personnel Only</div>
+            <input type="password" placeholder="Enter Access Key" id="access-key">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Smooth Scroll for "Enter" CTA
+            document.getElementById('enter-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#about').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+
+            // 2. Intersection Observer for Fade-Up Animations
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15, // Trigger when 15% of the element is visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Stop observing once revealed to keep it visible
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // 3. Partner Modal Logic
+            const modal = document.getElementById('partner-modal');
+            const partnerTrigger = document.getElementById('partner-trigger');
+            const closeModal = document.getElementById('close-modal');
+            const accessInput = document.getElementById('access-key');
+
+            partnerTrigger.addEventListener('click', () => {
+                modal.classList.add('open');
+                setTimeout(() => accessInput.focus(), 100);
+            });
+
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('open');
+                accessInput.value = ''; // Reset input
+            });
+
+            // Close modal on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    modal.classList.remove('open');
+                    accessInput.value = '';
+                }
+            });
+            
+            // Fake login interaction
+            accessInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    // Shake animation for incorrect password concept
+                    accessInput.style.transform = 'translateX(-10px)';
+                    setTimeout(() => accessInput.style.transform = 'translateX(10px)', 100);
+                    setTimeout(() => accessInput.style.transform = 'translateX(-10px)', 200);
+                    setTimeout(() => accessInput.style.transform = 'translateX(0)', 300);
+                    accessInput.value = '';
+                    accessInput.placeholder = 'Invalid Key';
+                }
+            });
+
+            // Trigger initial hero animation immediately on load
+            setTimeout(() => {
+                document.querySelector('.hero .reveal').classList.add('active');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
